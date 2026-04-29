@@ -1,6 +1,7 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { LanguageProvider } from "@/i18n/LanguageProvider";
 
 function NotFoundComponent() {
   return (
@@ -29,11 +30,12 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Atelier Pro by Seddik Mekkaoui — Premium Art Academy in Tangier" },
+      { name: "description", content: "Premium European-style art academy in Tangier, Morocco. Painting, drawing, sculpture and fine art photography for students worldwide." },
+      { name: "author", content: "Atelier Pro by Seddik Mekkaoui" },
+      { name: "theme-color", content: "#6b3a2a" },
+      { property: "og:title", content: "Atelier Pro by Seddik Mekkaoui" },
+      { property: "og:description", content: "Transforming passion into timeless art — a premium art academy in Tangier welcoming students worldwide." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
@@ -65,5 +67,9 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
-  return <Outlet />;
+  return (
+    <LanguageProvider>
+      <Outlet />
+    </LanguageProvider>
+  );
 }
