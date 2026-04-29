@@ -34,11 +34,15 @@ export const Route = createRootRoute({
       { name: "description", content: "Premium European-style art academy in Tangier, Morocco. Painting, drawing, sculpture and fine art photography for students worldwide." },
       { name: "author", content: "Atelier Pro by Seddik Mekkaoui" },
       { name: "theme-color", content: "#6b3a2a" },
-      { property: "og:title", content: "Atelier Pro by Seddik Mekkaoui" },
-      { property: "og:description", content: "Transforming passion into timeless art — a premium art academy in Tangier welcoming students worldwide." },
+      { property: "og:title", content: "Atelier Pro by Seddik Mekkaoui — Premium Art Academy in Tangier" },
+      { property: "og:description", content: "Premium European-style art academy in Tangier, Morocco. Painting, drawing, sculpture and fine art photography for students worldwide." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Atelier Pro by Seddik Mekkaoui — Premium Art Academy in Tangier" },
+      { name: "twitter:description", content: "Premium European-style art academy in Tangier, Morocco. Painting, drawing, sculpture and fine art photography for students worldwide." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/94b6e1fa-9884-43bd-9d4c-0edba6e7f997/id-preview-f2c965af--5db91637-e66d-4c73-933c-9e14c85a03af.lovable.app-1777473864281.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/94b6e1fa-9884-43bd-9d4c-0edba6e7f997/id-preview-f2c965af--5db91637-e66d-4c73-933c-9e14c85a03af.lovable.app-1777473864281.png" },
     ],
     links: [
       {
