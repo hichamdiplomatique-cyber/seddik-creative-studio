@@ -14,6 +14,7 @@ import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as FaqRouteImport } from './routes/faq'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as CoursesRouteImport } from './routes/courses'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
@@ -44,6 +45,11 @@ const FaqRoute = FaqRouteImport.update({
   path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CoursesRoute = CoursesRouteImport.update({
   id: '/courses',
   path: '/courses',
@@ -70,6 +76,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
+  '/dashboard': typeof DashboardRoute
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/login': typeof LoginRoute
@@ -81,6 +88,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
+  '/dashboard': typeof DashboardRoute
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/login': typeof LoginRoute
@@ -93,6 +101,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRoute
+  '/dashboard': typeof DashboardRoute
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/login': typeof LoginRoute
@@ -106,6 +115,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/courses'
+    | '/dashboard'
     | '/faq'
     | '/gallery'
     | '/login'
@@ -117,6 +127,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/courses'
+    | '/dashboard'
     | '/faq'
     | '/gallery'
     | '/login'
@@ -128,6 +139,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/courses'
+    | '/dashboard'
     | '/faq'
     | '/gallery'
     | '/login'
@@ -140,6 +152,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   CoursesRoute: typeof CoursesRoute
+  DashboardRoute: typeof DashboardRoute
   FaqRoute: typeof FaqRoute
   GalleryRoute: typeof GalleryRoute
   LoginRoute: typeof LoginRoute
@@ -184,6 +197,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/courses': {
       id: '/courses'
       path: '/courses'
@@ -220,6 +240,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   CoursesRoute: CoursesRoute,
+  DashboardRoute: DashboardRoute,
   FaqRoute: FaqRoute,
   GalleryRoute: GalleryRoute,
   LoginRoute: LoginRoute,
@@ -229,3 +250,12 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}
