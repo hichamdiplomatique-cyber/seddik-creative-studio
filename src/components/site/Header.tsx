@@ -1,11 +1,13 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, User } from "lucide-react";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useI18n } from "@/i18n/LanguageProvider";
+import { useAuth } from "@/auth/AuthProvider";
 
 export function Header() {
   const { t } = useI18n();
+  const { user } = useAuth();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { pathname } = useLocation();
@@ -68,6 +70,21 @@ export function Header() {
 
         <div className="flex items-center gap-2 md:gap-3">
           <LanguageSwitcher />
+          {user ? (
+            <Link
+              to="/dashboard"
+              className="hidden md:inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-2 text-xs font-medium text-foreground hover:bg-muted/50"
+            >
+              <User className="h-3.5 w-3.5" /> {t("nav.dashboard")}
+            </Link>
+          ) : (
+            <Link
+              to="/login"
+              className="hidden md:inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-2 text-xs font-medium text-foreground hover:bg-muted/50"
+            >
+              {t("nav.signin")}
+            </Link>
+          )}
           <Link
             to="/contact"
             className="hidden md:inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-xs font-medium text-background transition hover:bg-primary"
