@@ -2,6 +2,8 @@ import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/r
 
 import appCss from "../styles.css?url";
 import { LanguageProvider } from "@/i18n/LanguageProvider";
+import { AuthProvider } from "@/auth/AuthProvider";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -73,7 +75,10 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function RootComponent() {
   return (
     <LanguageProvider>
-      <Outlet />
+      <AuthProvider>
+        <Outlet />
+        <Toaster richColors position="top-center" />
+      </AuthProvider>
     </LanguageProvider>
   );
 }
